@@ -1,0 +1,16 @@
+# Any time that we're making use of docker,
+# we need super user level permission 
+# in order to execute.
+sudo: required
+services:
+  - docker
+
+# a series of different commands that get executed 
+# before eiter deploy our project or our tests are ran.
+before_install:
+  - docker build -t winglesswind/docker-react -f Dockerfile.dev . 
+
+# all the different commands that need to be executed 
+# to actually run our test suites.
+scripts:
+  - docker run winglesswind/docker-react npm run test -- --coverage 
