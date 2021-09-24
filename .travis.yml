@@ -13,4 +13,4 @@ before_install:
 # all the different commands that need to be executed 
 # to actually run our test suites.
 scripts:
-  - docker run winglesswind/docker-react npm run test -- --coverage 
+  - docker run -e CI=true winglesswind/docker-react npm run test 
