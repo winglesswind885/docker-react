@@ -14,3 +14,17 @@ before_install:
 # to actually run our test suites.
 scripts:
   - docker run -e CI=true winglesswind/docker-react npm run test 
+
+deploy:
+  provider: elasticbeanstalk
+  # From: http://testdockerreact-env.eba-bpj3hmfz.us-east-2.elasticbeanstalk.com/
+  region: "us-east-2"
+  app: "test-docker-react"
+  env: "Testdockerreact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-126052845425"
+  # bucket_path should be exactly same as app name.
+  bucket_path: "test-docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
